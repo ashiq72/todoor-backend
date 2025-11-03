@@ -1,22 +1,11 @@
-const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
-const { schema } = require("../graphql/schema");
+import express, { Request, Response } from "express";
+const app = express();
 const port = 5000;
 
-const app = express();
-
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("/", (_req: Request, res: Response) => {
+  res.send("Hello World!");
 });
 
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: schema,
-    graphiql: true,
-  })
-);
-
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening on port ${port}`);
 });
