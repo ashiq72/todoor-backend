@@ -1,11 +1,17 @@
-import express, { Request, Response } from "express";
-const app = express();
-const port = 5000;
+import express from "express";
+import mongoose from "mongoose";
+import config from "./config";
+import app from "./app";
 
-app.get("/", (_req: Request, res: Response) => {
-  res.send("Hello World!");
-});
+async function main() {
+  try {
+    await mongoose.connect(config.database_url as string);
+    app.listen(config.port, () => {
+      console.log(`app is listening on port ${config.port}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+main();
