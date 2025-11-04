@@ -3,5 +3,5 @@ import { ItemRoutes } from "../app/modules/item/item.route";
 
 const router = Router();
 
-router.use("/item", ItemRoutes);
+router.use("/items", ItemRoutes);
 export default router;
